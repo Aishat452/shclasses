@@ -1,58 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login page</title>
+  <title>Simple Form</title>
+  <style type="text/css">
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      margin: 50px auto;
+      max-width: 500px;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.8em;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    .success {
+      color: green;
+      font-size: 1.2em;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 
-<!-- CSS -->
-<style>
-body{
-    background-color: rgb(195, 0, 255);
-}
-
-div{
-
-    background-color: azure;
-
-}
- form{
-    margin: 10rem;
- }
-
- section{
-    padding: 10rem 30rem 0px ;
- }
-
-</style>
-
 <body>
-    
-  <section>
-    <div>
-        <form action="" method="get">
-            <label for="">Full Name:</label> <br>
-            <input type="name"> <br>
-  
-            <label for="">Email Address:</label> <br>
-            <input type="email"> <br>
-  
-            <label for="">Phone Number:</label> <br>
-            <input type="tel"> <br>
-  
-            <label for="">Gender:</label> <br>
-            <input type="radio" name="p"> <label for="">Male</label><br>
-            <input type="radio" name="p"> <label for="">Female</label><br>
-  
-            <label for="">Password:</label> <br>
-            <input type="password"> <br>
-  
-            <button type="submit">Submit</button>
-          </form>
-    </div>
-  </section>
+  <form method="post" action="#" onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name"><br>
 
-</body>
-</html>
+    <label for="email">Email address:</label>
+    <input type="email" name="email" id="email"><br>
+
+    <label for="phone">Phone number:</label>
+    <input type="text" name="phone" id="phone"><br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" name="gender" value="male" id="male"><label for="male">Male</label>
+    <input type="radio" name="gender" value="female" id="female"><label for="female">Female</label><br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password"><br>
+
+    <input type="submit" value="Submit">
+    <div class="error" id="error-message"></div>
+    <div class="success" id="success-message"></div>
+  </form>
+
+  <script type="text/javascript">
+    function validateForm() {
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var password = document.getElementById("password").value.trim();
+
+      if (name == "") {
+        document.getElementById("name").style.borderColor
+          = "red";
+        document.getElementById("error-message").innerHTML = "Please enter your name.";
+        return false;
+      } else {
+        document.getElementById("name").style.borderColor = "#ccc";
+      }
+
+      if (email == "") {
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter your email address.";
+        return false;
+      } else if (!validateEmail(email)) {
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter a valid email address.";
+        return false;
+      } else {
+        document.getElementById("email").style.borderColor = "#ccc";
+      }
+
+      if (phone == "") {
+        document.getElementById("phone").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter your phone number.";
+        return false;
+      } else {
+        document.getElementById("phone").style.borderColor = "#ccc";
+      }
+
+      if (gender == null) {
+        document.getElementById("error-message").innerHTML = "Please select your gender.";
+        return false;
+      }
+
+      if (password == "") {
+        document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter a password.";
+        return false;
+      } else {
+        document.getElementById("password").style.borderColor = "#ccc";
+      }
+
+      document.getElementById("error-message").innerHTML = "";
+      document.getElementById("success-message").innerHTML = "Form submitted successfully!";
+      return true;
+    }
+
+    function validateEmail(email) {
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  </script>
