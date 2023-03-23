@@ -1,1 +1,152 @@
+<html>
+
+<head>
+  <title>Simple Form</title>
+  <style type="text/css">
+    body {
+      background-color: #ff009d;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      margin: 9rem auto;
+      max-width: 500px;
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #00f7ff;
+      color: #000000;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #000000;
+      color: #fff;
+    }
+
+    .error {
+      color: #ff0000;
+      font-weight: 600;
+      text-align: center;
+      padding: 5px;
+      font-size: 1em;
+      margin: 10px 18rem -10px 0px;
+    }
+
+    .success {
+      color: green;
+      font-size: 1em;
+      margin: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <form method="post" action="#" onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name"><br>
+
+    <label for="email">Email address:</label>
+    <input type="email" name="email" id="email"><br>
+
+    <label for="phone">Phone number:</label>
+    <input type="text" name="phone" id="phone"><br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" name="gender" value="male" id="male"><label for="male">Male</label>
+    <input type="radio" name="gender" value="female" id="female"><label for="female">Female</label><br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password"><br>
+
+    <input type="submit" value="Submit">
+    <div class="error" id="error-message"></div>
+    <div class="success" id="success-message"></div>
+  </form>
+
+  <script type="text/javascript">
+    function validateForm() {
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var phone = document.getElementById("phone").value.trim();
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var password = document.getElementById("password").value.trim();
+
+      if (name == "") {
+        document.getElementById("name").style.borderColor
+          = "red";
+        document.getElementById("error-message").innerHTML = "Kindly enter your name.";
+        return false;
+      } else {
+        document.getElementById("name").style.borderColor = "#ccc";
+      }
+
+      if (email == "") {
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Kindly enter your email address.";
+        return false;
+      } else if (!validateEmail(email)) {
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter a valid email address.";
+        return false;
+      } else {
+        document.getElementById("email").style.borderColor = "#ccc";
+      }
+
+      if (phone == "") {
+        document.getElementById("phone").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter your phone number.";
+        return false;
+      } else {
+        document.getElementById("phone").style.borderColor = "#ccc";
+      }
+
+      if (gender == null) {
+        document.getElementById("error-message").innerHTML = "Please select your gender.";
+        return false;
+      }
+
+      if (password == "") {
+        document.getElementById("password").style.borderColor = "red";
+        document.getElementById("error-message").innerHTML = "Please enter a password.";
+        return false;
+      } else {
+        document.getElementById("password").style.borderColor = "#ccc";
+      }
+
+      document.getElementById("error-message").innerHTML = "";
+      document.getElementById("success-message").innerHTML = "Form Submitted Successfully!";
+      return true;
+    }
 
