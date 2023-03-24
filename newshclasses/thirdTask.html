@@ -5,100 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Product Landing Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-
-        nav {
-            background-color: #eee;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: #333;
-            font-weight: bold;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 28px;
-            margin: 0;
-        }
-
-        p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        input[type=text],
-        input[type=email] {
-            padding: 10px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 300px;
-            font-size: 16px;
-        }
-
-        input[type=submit] {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-            text-align: left;
-            display: none;
-        }
-
-        .success {
-            color: green;
-            font-size: 16px;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="thirdTask.css">
 </head>
 
 <body>
@@ -123,39 +30,6 @@
             <input type="submit" value="Sign Up">
             <div class="success" id="success-message">Thank you for signing up!</div>
     </main>
-    <script>
-        function validateForm() {
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var nameError = document.getElementById("name-error");
-            var emailError = document.getElementById("email-error");
-            if (name == "") {
-                nameError.style.display = "block";
-                return false;
-            } else {
-                nameError.style.display = "none";
-            }
-
-            if (email == "") {
-                emailError.innerHTML = "Please enter your email address.";
-                emailError.style.display = "block";
-                return false;
-            } else if (!validateEmail(email)) {
-                emailError.innerHTML = "Please enter a valid email address.";
-                emailError.style.display = "block";
-                return false;
-            } else {
-                emailError.style.display = "none";
-            }
-
-            document.getElementById("success-message").style.display = "block";
-            return true;
-        }
-
-        function validateEmail(email) {
-            var re = /\S+@\S+\.\S+/;
-            return re.test(email);
-        }
-    </script>
+   <script src="thirdTask.js"></script>
 </body>
 </html>
